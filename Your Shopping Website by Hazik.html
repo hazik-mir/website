@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Shopping Website by Hazik</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07070f;--ink:#f4f2ff;--mut:#9a98b8;--card:#ffffff0d;--line:#ffffff1f;--a:#7c5cff;--b:#22d3ee;--c:#ffb454;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f1fb;--ink:#12102b;--mut:#5d5a7e;--card:#ffffffb3;--line:#12102b22}}
+:root[data-theme="light"]{--bg:#f3f1fb;--ink:#12102b;--mut:#5d5a7e;--card:#ffffffb3;--line:#12102b22}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.d{font-family:Unbounded,"Arial Black",sans-serif;margin:0;line-height:1.02}
+button{font:inherit;color:inherit;border:0;cursor:pointer}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;transition:opacity .3s}
+main,nav,footer{position:relative;z-index:2}
+#prog{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--a),var(--b),var(--c));z-index:80}
+/* intro */
+#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;text-align:center;color:#f4f2ff}
+#intro .h{position:absolute;left:0;right:0;height:50.5%;background:#07070f;transition:transform 1s cubic-bezier(.77,0,.18,1)}
+#intro .h1{top:0}#intro .h2{bottom:0}
+#intro.out .h1{transform:translateY(-101%)}#intro.out .h2{transform:translateY(101%)}
+#intro .in{position:relative;transition:opacity .4s,transform .6s}
+#intro.out .in{opacity:0;transform:scale(1.4)}
+.ring{width:150px;height:150px;margin:0 auto 24px;border-radius:50%;border:3px solid transparent;border-top-color:#7c5cff;border-right-color:#22d3ee;animation:sp 1.1s linear infinite;display:grid;place-items:center;position:relative}
+.ring::after{content:"";position:absolute;inset:14px;border-radius:50%;border:2px dashed #ffb454;animation:sp 3s linear infinite reverse}
+@keyframes sp{to{transform:rotate(360deg)}}
+.ring span{font-family:Unbounded;font-size:28px;animation:sp 1.1s linear infinite reverse}
+.hz{font-family:Unbounded;font-weight:800;font-size:clamp(48px,16vw,130px);display:flex;justify-content:center;perspective:600px}
+.hz i{font-style:normal;display:inline-block;opacity:0;transform:rotateX(-90deg) translateY(40px);animation:fl .8s cubic-bezier(.2,1.2,.3,1) forwards;animation-delay:calc(.2s + var(--i)*.09s);background:linear-gradient(180deg,#fff,#7c5cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes fl{to{opacity:1;transform:none}}
+.isub{color:#9a98b8;letter-spacing:.2em;font-size:13px;margin-top:6px}
+.skip{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;z-index:3;background:#ffffff1a;color:#f4f2ff;padding:8px 14px;border-radius:99px;font-size:13px}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 16px;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);z-index:30}
+.lg{font-family:Unbounded;font-size:13px;line-height:1.1;font-weight:800}
+.lg small{display:block;font-family:Manrope;font-weight:600;color:var(--b);font-size:11px;margin-top:2px}
+.bt{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;padding:10px 16px;border-radius:99px;font-weight:800;font-size:14px;box-shadow:0 8px 24px #7c5cff55;transition:transform .2s}
+.bt:active{transform:scale(.93)}
+.bt.g{background:var(--card);color:var(--ink);box-shadow:none;border:1px solid var(--line)}
+.bump{animation:bp .4s}@keyframes bp{50%{transform:scale(1.5)}}
+/* hero */
+.hero{min-height:92vh;padding:60px 16px;display:flex;flex-direction:column;justify-content:flex-end;max-width:1200px;margin:auto}
+.hero h1{font-size:clamp(38px,10.5vw,110px);font-weight:800;max-width:11ch}
+.hero .by{font-family:Unbounded;font-size:clamp(18px,4vw,34px);margin-top:16px;display:inline-block;position:relative}
+.hero .by::after{content:"";position:absolute;left:0;bottom:-6px;height:4px;width:100%;background:linear-gradient(90deg,var(--a),var(--b),var(--c));transform:scaleX(0);transform-origin:left;animation:ln 1s .6s forwards}
+@keyframes ln{to{transform:scaleX(1)}}
+.hero p{color:var(--mut);max-width:36ch;font-size:17px;margin:22px 0}
+.hero .bt{align-self:flex-start;padding:16px 28px;font-size:17px}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
+.w span{display:inline-block;transform:translateY(110%) rotate(6deg);transition:transform .9s cubic-bezier(.2,.9,.2,1);transition-delay:calc(var(--i)*.08s)}
+.go .w span,.in .w span{transform:none}
+/* scroll strip */
+.strip{overflow:hidden;padding:40px 0;white-space:nowrap}
+.strip div{display:inline-block;font-family:Unbounded;font-weight:800;font-size:clamp(50px,13vw,150px);color:transparent;-webkit-text-stroke:1.5px var(--ink);will-change:transform}
+.strip div b{font-weight:800;-webkit-text-stroke:0;color:var(--a)}
+/* sections */
+section{padding:60px 16px;max-width:1200px;margin:auto}
+h2{font-size:clamp(28px,7vw,64px);font-weight:800;margin-bottom:26px}
+.rv{opacity:0;transform:perspective(900px) translateY(60px) rotateX(18deg);transition:opacity .8s,transform .9s cubic-bezier(.2,.9,.2,1);transition-delay:var(--dl,0s)}
+.rv.in{opacity:1;transform:none}
+.feat{display:grid;gap:14px}
+.fc{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px;backdrop-filter:blur(14px)}
+.fc h3{font-size:19px;margin:14px 0 8px}.fc p{color:var(--mut);margin:0}
+.ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-family:Unbounded;font-weight:800;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;transform:translateZ(40px)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:18px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tab{white-space:nowrap;padding:10px 18px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-weight:700;transition:all .25s}
+.tab.on{background:var(--ink);color:var(--bg);transform:scale(1.07)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;backdrop-filter:blur(12px);transform-style:preserve-3d;transition:box-shadow .3s}
+.card.rv.in{transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.card:hover{box-shadow:0 20px 50px #7c5cff44}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),#ffffff33,transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover::after{opacity:1}
+.art{height:140px;display:grid;place-items:center;transform-style:preserve-3d}
+.art svg{width:78%;height:100%;transform:translateZ(50px);animation:bob 4s ease-in-out infinite;filter:drop-shadow(0 18px 14px #0006)}
+@keyframes bob{50%{transform:translateZ(50px) translateY(-8px) rotate(2deg)}}
+.off{position:absolute;top:10px;left:10px;background:var(--c);color:#1b1200;font-weight:800;font-size:11px;padding:4px 9px;border-radius:99px;z-index:2}
+.inf{padding:4px 14px 14px;transform:translateZ(20px)}
+.inf h3{font-family:Manrope;font-weight:800;font-size:14px;line-height:1.25;min-height:35px}
+.cat{font-size:12px;color:var(--mut);margin:3px 0 6px}
+.pr b{font-size:19px;font-weight:800}.pr s{color:var(--mut);font-size:12px;margin-left:6px}
+.add{width:100%;margin-top:10px;padding:11px;border-radius:14px;background:var(--ink);color:var(--bg);font-weight:800;transition:transform .15s,background .3s}
+.add:active{transform:scale(.94)}.add.ok{background:#12c9a0;color:#04231b}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.st{padding:24px;border-radius:24px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(12px)}
+.st b{font-family:Unbounded;font-size:clamp(30px,6vw,52px);display:block;background:linear-gradient(135deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+footer{text-align:center;padding:70px 16px 80px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--bg) 70%,transparent)}
+footer .d{font-size:clamp(26px,8vw,80px);font-weight:800}footer p{color:var(--mut)}
+/* cart */
+#dr{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);border-left:1px solid var(--line);z-index:60;transform:translateX(105%);transition:transform .55s cubic-bezier(.77,0,.18,1);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 16px)}
+#dr.open{transform:none}
+#its{flex:1;overflow:auto;margin:14px 0}
+.it{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);animation:si .4s}
+@keyframes si{from{transform:translateX(40px);opacity:0}}
+.it svg{width:60px;height:46px}.it div{flex:1;font-size:14px}.rm{background:none;font-size:18px;color:var(--mut)}
+.tot{display:flex;justify-content:space-between;font-size:22px;font-weight:800;margin-bottom:12px}
+#ts{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translate(-50%,200%);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:99px;z-index:90;font-weight:800;transition:transform .45s cubic-bezier(.2,1.5,.3,1)}
+#ts.show{transform:translate(-50%,0)}
+.sale{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px;border-radius:22px;background:linear-gradient(120deg,var(--a),#ff3d81,var(--c));background-size:200% 200%;animation:gs 6s ease infinite;color:#fff;margin-bottom:18px}
+@keyframes gs{50%{background-position:100% 50%}}
+.sale span{display:block;font-size:13px;opacity:.9;margin-top:4px}
+.cd{font-family:Unbounded;font-size:clamp(20px,5vw,32px);font-variant-numeric:tabular-nums}
+.tb{display:flex;gap:10px;margin-bottom:14px}
+.tb input,.tb select,.cp input{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:14px;padding:12px 14px;font:inherit;min-width:0}
+.tb input,.cp input{flex:1}
+.hrt{position:absolute;top:8px;right:8px;z-index:3;width:34px;height:34px;border-radius:50%;background:#0006;color:#fff;font-size:17px;transition:transform .2s,background .2s}
+.hrt.on{background:#ff3d81;animation:bp .4s}.hrt:active{transform:scale(.8)}
+.fdb{height:8px;border-radius:9px;background:var(--line);overflow:hidden;margin:6px 0 12px}.fdb i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));transition:width .5s}
+.cp{display:flex;gap:8px;margin-bottom:12px}
+@media (min-width:760px){.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}.feat{grid-template-columns:repeat(3,1fr)}.stats{grid-template-columns:repeat(4,1fr)}.art{height:170px}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<canvas id="gl"></canvas>
+
+
+<nav>
+  <div class="lg">Your Shopping Website<small>by Hazik</small></div>
+  <div style="display:flex;gap:8px"><button class="bt g" id="shuf">Shuffle prices</button><button class="bt" id="cb">Cart (<span id="cc">0</span>)</button></div>
+</nav>
+
+<main>
+  <header class="hero" id="hero">
+    <h1 class="sp">Everything you need, in one place.</h1>
+    <div class="by">by Hazik</div>
+    <p>TVs, phones, laptops, audio and home appliances at wholesale prices. Add to cart and check out in seconds.</p>
+    <button class="bt" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop now</button>
+  </header>
+
+  <div class="strip"><div id="sd">TVs <b>/</b> Phones <b>/</b> Laptops <b>/</b> Audio <b>/</b> Home <b>/</b> Gadgets <b>/</b> TVs <b>/</b> Phones</div></div>
+
+  <section>
+    <h2 class="sp">Why shop with Hazik</h2>
+    <div class="feat">
+      <div class="fc rv tl" style="--dl:0s"><div class="ic">01</div><h3>Same-day dispatch</h3><p>Orders placed before 4 PM leave our warehouse the same day.</p></div>
+      <div class="fc rv tl" style="--dl:.12s"><div class="ic">02</div><h3>Wholesale prices</h3><p>Prices are updated daily, so you always see the best rate.</p></div>
+      <div class="fc rv tl" style="--dl:.24s"><div class="ic">03</div><h3>Easy returns</h3><p>Return any unopened item within 10 days for a full refund.</p></div>
+    </div>
+  </section>
+
+  <section id="shop">
+    <h2 class="sp">All products</h2>
+    <div class="sale rv"><div><b class="d">Flash sale</b><span>Extra deals end in</span></div><div class="cd" id="cd">00:00:00</div></div>
+    <div class="tb"><input id="q" type="search" placeholder="Search 56 products" aria-label="Search products"><select id="so" aria-label="Sort products"><option value="">Featured</option><option value="l">Price: low to high</option><option value="h">Price: high to low</option><option value="d">Biggest discount</option><option value="r">Top rated</option></select></div>
+    <div class="tabs" id="tabs"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section>
+    <div class="stats">
+      <div class="st rv"><b data-n="2400">0</b>Products in stock</div>
+      <div class="st rv" style="--dl:.1s"><b data-n="180">0</b>Cities served</div>
+      <div class="st rv" style="--dl:.2s"><b data-n="35">0</b>Years in trade</div>
+      <div class="st rv" style="--dl:.3s"><b data-n="99">0</b>% happy customers</div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="d">Your Shopping Website</div><p>by Hazik. Prototype store: prices and stock are sample data.</p></footer>
+
+<aside id="dr" aria-label="Cart">
+  <div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:28px;margin:0">Your cart</h2><button class="bt g" id="cl">Close</button></div>
+  <div id="its"></div>
+  <div id="fd" style="font-size:13px;color:var(--mut)"></div><div class="cp"><input id="cpi" placeholder="Coupon code (try HAZIK10)" aria-label="Coupon code"><button class="bt g" id="cpb">Apply</button></div><div class="tot"><span>Total</span><span id="tot">₹0</span></div>
+  <button class="bt" style="padding:16px" id="buy">Place order</button>
+</aside>
+<div id="ts"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const P=[["TVs","Smart LED TV 55\" 4K",32000,52000],["TVs","OLED TV 65\" Ultra HD",85000,140000],["TVs","Android TV 43\" Full HD",19000,28000],["TVs","QLED TV 75\" Gaming",95000,160000],
+["Mobiles","Flagship Phone 256GB",48000,95000],["Mobiles","5G Phone 128GB",14000,28000],["Mobiles","Budget Phone 64GB",7000,11000],["Mobiles","Foldable Phone Pro",90000,150000],
+["Laptops","Slim Laptop i5 16GB",42000,70000],["Laptops","Gaming Laptop RTX",85000,160000],["Laptops","Creator Laptop 14\"",65000,120000],["Laptops","Student Laptop 8GB",24000,36000],
+["Audio","Noise Cancelling Headphones",5000,25000],["Audio","Bluetooth Speaker",1800,9000],["Audio","Wireless Earbuds Pro",2500,14000],["Audio","Studio Monitor Headset",3500,12000],
+["Home","Double Door Fridge 300L",24000,42000],["Home","Front Load Washer 8kg",26000,45000],["Home","1.5 Ton Split AC",29000,48000],["Home","Air Fryer 5L",3500,9000],["Home","Microwave Oven 28L",7500,14000],["Home","Robot Vacuum Cleaner",14000,38000],
+["Gadgets","Smart Watch AMOLED",2500,18000],["Gadgets","Fitness Band 2",1500,4500],["Gadgets","Gaming Console 1TB",35000,55000],["Gadgets","20000mAh Power Bank",1200,3200],["Gadgets","4K Action Camera",9000,30000],["Gadgets","Wireless Printer",6000,16000],
+["Tablets","Tablet 11\" 128GB",18000,45000],["Tablets","Pro Tablet 12.9\"",60000,110000],["Tablets","Kids Learning Tablet",6000,10000],
+["Monitors","27\" 4K Monitor",18000,40000],["Monitors","34\" Ultrawide Curved",28000,60000],["Monitors","24\" Full HD Monitor",8000,13000],
+["Gaming","Wireless Game Controller",3000,7000],["Gaming","Gaming Headset RGB",2500,8000],["Gaming","Gaming Mouse 16K DPI",1500,5000],["Gaming","Racing Wheel Set",12000,30000],
+["Kitchen","Mixer Grinder 750W",3000,6500],["Kitchen","Induction Cooktop",2500,5000],["Kitchen","Electric Kettle 1.8L",900,2200],["Kitchen","Espresso Coffee Machine",9000,32000],["Kitchen","RO Water Purifier",9000,20000],["Kitchen","Dishwasher 12 Place",28000,52000],
+["Cameras","DSLR Camera 24MP",38000,75000],["Cameras","Instant Camera",5000,9000],["Cameras","Security Camera 2K",1800,4500],["Cameras","Pro Camera Tripod",1200,4000],
+["Accessories","Fast Charger 65W",1200,3000],["Accessories","Laptop Backpack",1500,4500],["Accessories","USB-C Hub 8-in-1",1800,5000],["Accessories","Wireless Charger Pad",1000,3000],["Accessories","Premium Phone Case",400,1500],["Accessories","Smart LED Bulb Pack",700,2000],["Accessories","Wi-Fi 6 Router",3000,12000],["Accessories","Portable SSD 1TB",6500,12000]];
+const $=s=>document.querySelector(s),rnd=(a,b)=>Math.random()*(b-a)+a,inr=n=>"₹"+n.toLocaleString("en-IN");
+function art(c,h,id){c=({Tablets:"Mobiles",Monitors:"TVs",Gaming:"Gadgets",Kitchen:"Home",Cameras:"Gadgets",Accessories:"Audio"})[c]||c;const g=`<defs><linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${h} 90% 62%)"/><stop offset="1" stop-color="hsl(${(h+60)%360} 90% 45%)"/></linearGradient></defs>`;let s="";
+ if(c=="TVs")s=`<rect x="18" y="10" width="124" height="76" rx="7" fill="#15151f"/><rect x="23" y="15" width="114" height="66" rx="4" fill="url(#g${id})"/><path d="M23 62 Q60 40 90 58 T137 48 V81 H23Z" fill="#fff" opacity=".28"/><rect x="72" y="86" width="16" height="14" fill="#2a2a3a"/><rect x="50" y="99" width="60" height="6" rx="3" fill="#2a2a3a"/>`;
+ else if(c=="Mobiles")s=`<rect x="54" y="4" width="52" height="112" rx="12" fill="#15151f"/><rect x="59" y="10" width="42" height="100" rx="8" fill="url(#g${id})"/><rect x="72" y="14" width="16" height="4" rx="2" fill="#15151f"/><circle cx="80" cy="52" r="12" fill="#fff" opacity=".3"/><rect x="68" y="72" width="24" height="5" rx="2" fill="#fff" opacity=".5"/><rect x="72" y="84" width="16" height="5" rx="2" fill="#fff" opacity=".3"/>`;
+ else if(c=="Laptops")s=`<rect x="30" y="16" width="100" height="66" rx="5" fill="#15151f"/><rect x="35" y="21" width="90" height="56" rx="3" fill="url(#g${id})"/><path d="M35 62 L70 40 L95 56 L125 36 V77 H35Z" fill="#fff" opacity=".25"/><path d="M12 86 H148 L138 102 H22Z" fill="#c9c9d8"/><rect x="62" y="88" width="36" height="4" rx="2" fill="#9a9ab0"/>`;
+ else if(c=="Audio")s=`<path d="M42 72 A38 46 0 0 1 118 72" stroke="#2a2a3a" stroke-width="9" fill="none" stroke-linecap="round"/><rect x="30" y="62" width="24" height="42" rx="11" fill="url(#g${id})"/><rect x="106" y="62" width="24" height="42" rx="11" fill="url(#g${id})"/><rect x="36" y="72" width="8" height="22" rx="4" fill="#fff" opacity=".35"/><rect x="116" y="72" width="8" height="22" rx="4" fill="#fff" opacity=".35"/>`;
+ else if(c=="Home")s=`<rect x="44" y="6" width="72" height="108" rx="9" fill="url(#g${id})"/><rect x="44" y="46" width="72" height="3" fill="#0004"/><rect x="104" y="18" width="5" height="22" rx="2" fill="#fff" opacity=".7"/><rect x="104" y="56" width="5" height="34" rx="2" fill="#fff" opacity=".7"/><circle cx="64" cy="26" r="6" fill="#fff" opacity=".35"/><rect x="52" y="100" width="56" height="4" rx="2" fill="#fff" opacity=".25"/>`;
+ else s=`<rect x="62" y="2" width="36" height="116" rx="12" fill="#2a2a3a"/><circle cx="80" cy="60" r="36" fill="#15151f"/><circle cx="80" cy="60" r="30" fill="url(#g${id})"/><path d="M80 60 V40 M80 60 L94 68" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="80" cy="60" r="4" fill="#fff"/><rect x="113" y="52" width="6" height="12" rx="3" fill="#9a9ab0"/>`;
+ return `<svg viewBox="0 0 160 120">${g}${s}</svg>`}
+let cat="All",cart=[],items=[],q="",sort="",wish=new Set(),coupon=0;
+function price(){items=P.map((p,i)=>{const pr=Math.round(rnd(p[2],p[3])/100)*100-1,mrp=Math.round(pr*rnd(1.12,1.45)/100)*100;return{i,c:p[0],n:p[1],pr,mrp,r:rnd(3.8,4.9).toFixed(1),off:Math.round((1-pr/mrp)*100),h:(i*41+200)%360}})}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+function render(){const g=$("#grid");g.innerHTML="";
+ let L=items.filter(x=>(cat=="All"||(cat=="Saved"?wish.has(x.i):x.c==cat))&&x.n.toLowerCase().includes(q));if(sort=="l")L.sort((a,b)=>a.pr-b.pr);if(sort=="h")L.sort((a,b)=>b.pr-a.pr);if(sort=="d")L.sort((a,b)=>b.off-a.off);if(sort=="r")L.sort((a,b)=>b.r-a.r);if(!L.length)g.innerHTML="<p style='color:var(--mut)'>No products found. Try another search or category.</p>";L.forEach((x,k)=>{const d=document.createElement("div");d.className="card rv";d.style.setProperty("--dl",(k%4)*.08+"s");
+  d.innerHTML=`<div class="art"><span class="off">${x.off}% off</span><button class="hrt ${wish.has(x.i)?"on":""}" aria-label="Save to wishlist">♥</button>${art(x.c,x.h,x.i)}</div><div class="inf"><h3>${x.n}</h3><div class="cat">${x.c} · ★ ${x.r}</div><div class="pr"><b>${inr(x.pr)}</b><s>${inr(x.mrp)}</s></div><button class="add">Add to cart</button></div>`;
+  d.querySelector(".add").onclick=e=>add(x,e.target);
+  d.querySelector(".hrt").onclick=e=>{wish.has(x.i)?wish.delete(x.i):wish.add(x.i);e.target.classList.toggle("on");toast(wish.has(x.i)?"Saved to wishlist":"Removed from wishlist");if(cat=="Saved")render()};
+  d.addEventListener("pointermove",e=>{if(e.pointerType!="mouse")return;const r=d.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;d.style.setProperty("--ry",(px-.5)*16+"deg");d.style.setProperty("--rx",-(py-.5)*16+"deg");d.style.setProperty("--gx",px*100+"%");d.style.setProperty("--gy",py*100+"%")});
+  d.addEventListener("pointerleave",()=>{d.style.setProperty("--rx","0deg");d.style.setProperty("--ry","0deg")});
+  g.appendChild(d);io.observe(d)})}
+function tabs(){const t=$("#tabs");t.innerHTML="";["All","Saved",...new Set(P.map(p=>p[0]))].forEach(c=>{const b=document.createElement("button");b.className="tab"+(c==cat?" on":"");b.textContent=c;b.onclick=()=>{cat=c;tabs();render()};t.appendChild(b)})}
+function toast(t){const e=$("#ts");e.textContent=t;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("show"),1800)}
+function add(x,b){cart.push(x);b.textContent="Added";b.classList.add("ok");setTimeout(()=>{b.textContent="Add to cart";b.classList.remove("ok")},1200);upd();toast(x.n+" added")}
+function upd(){const c=$("#cc");c.textContent=cart.length;c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump");
+ $("#its").innerHTML=cart.length?"":"<p style='color:var(--mut)'>Your cart is empty. Add a product to start.</p>";
+ cart.forEach((x,k)=>{const r=document.createElement("div");r.className="it";r.innerHTML=`${art(x.c,x.h,"c"+k)}<div>${x.n}<br><b>${inr(x.pr)}</b></div><button class="rm" aria-label="Remove">✕</button>`;r.querySelector(".rm").onclick=()=>{cart.splice(k,1);upd()};$("#its").appendChild(r)});
+ const sub=cart.reduce((a,b)=>a+b.pr,0),dis=Math.round(sub*coupon),tt=sub-dis,left=Math.max(0,50000-tt);
+ $("#fd").innerHTML=cart.length?(left?`Add ${inr(left)} more for free delivery`:"You get free delivery")+`<div class="fdb"><i style="width:${Math.min(100,tt/500)}%"></i></div>`:"";
+ $("#tot").textContent=inr(tt)+(dis?` (-${inr(dis)})`:"")}
+$("#cb").onclick=()=>$("#dr").classList.add("open");$("#cl").onclick=()=>$("#dr").classList.remove("open");
+$("#buy").onclick=()=>{if(!cart.length)return toast("Add a product first");cart=[];upd();$("#dr").classList.remove("open");toast("Order placed. Thank you!")};
+$("#shuf").onclick=()=>{price();cart=[];upd();render();toast("New prices loaded")};
+/* split headlines into words */
+document.querySelectorAll(".sp").forEach(h=>{h.innerHTML=h.textContent.split(" ").map((w,i)=>`<span class="w"><span style="--i:${i}">${w}</span></span>`).join(" ")});
+document.querySelectorAll(".rv,.sp").forEach(e=>{if(!e.classList.contains("card"))io.observe(e)});
+const co=new IntersectionObserver((es,o)=>es.forEach(e=>{if(!e.isIntersecting)return;o.unobserve(e.target);const n=+e.target.dataset.n,t0=performance.now();(function f(t){const p=Math.min((t-t0)/1700,1);e.target.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString("en-IN");if(p<1)requestAnimationFrame(f)})(t0)}));
+document.querySelectorAll("[data-n]").forEach(e=>co.observe(e));
+/* tilt for feature cards */
+document.querySelectorAll(".tl").forEach(d=>{d.addEventListener("pointermove",e=>{if(e.pointerType!="mouse")return;const r=d.getBoundingClientRect();d.style.transform=`perspective(800px) rotateY(${((e.clientX-r.left)/r.width-.5)*14}deg) rotateX(${-((e.clientY-r.top)/r.height-.5)*14}deg)`});d.addEventListener("pointerleave",()=>d.style.transform="")});
+/* intro */
+requestAnimationFrame(()=>$("#hero").classList.add("go"));
+price();tabs();render();upd();
+$("#q").oninput=e=>{q=e.target.value.toLowerCase().trim();render()};$("#so").onchange=e=>{sort=e.target.value;render()};
+$("#cpb").onclick=()=>{if($("#cpi").value.trim().toUpperCase()=="HAZIK10"){coupon=.1;toast("10% off applied")}else{coupon=0;toast("Invalid coupon code")}upd()};
+const saleEnd=Date.now()+(5*3600+rnd(600,3000))*1000;
+setInterval(()=>{const s=Math.max(0,Math.floor((saleEnd-Date.now())/1000));$("#cd").textContent=[s/3600,s%3600/60,s%60].map(v=>String(Math.floor(v)).padStart(2,"0")).join(":")},1000);
+/* 3D scene */
+let mx=0,my=0,sy=0,sp=0;
+addEventListener("pointermove",e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+try{
+const cv=$("#gl"),R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(45,1,.1,100);C.position.z=7;
+S.add(new THREE.AmbientLight(0xffffff,.7));const l1=new THREE.PointLight(0x7c5cff,2.2,30);l1.position.set(4,3,5);S.add(l1);const l2=new THREE.PointLight(0x22d3ee,2,30);l2.position.set(-4,-2,4);S.add(l2);
+function tex(a,b){const c=document.createElement("canvas");c.width=256;c.height=160;const x=c.getContext("2d"),g=x.createLinearGradient(0,0,256,160);g.addColorStop(0,a);g.addColorStop(1,b);x.fillStyle=g;x.fillRect(0,0,256,160);x.fillStyle="#fff3";x.beginPath();x.moveTo(0,120);x.quadraticCurveTo(80,60,150,110);x.quadraticCurveTo(210,150,256,90);x.lineTo(256,160);x.lineTo(0,160);x.fill();return new THREE.CanvasTexture(c)}
+const dark=new THREE.MeshStandardMaterial({color:0x14141f,metalness:.7,roughness:.3});
+const G=new THREE.Group();S.add(G);
+const tv=new THREE.Group();tv.add(new THREE.Mesh(new THREE.BoxGeometry(2.4,1.45,.14),dark));const sc=new THREE.Mesh(new THREE.PlaneGeometry(2.25,1.3),new THREE.MeshBasicMaterial({map:tex("#7c5cff","#22d3ee")}));sc.position.z=.08;tv.add(sc);const st=new THREE.Mesh(new THREE.BoxGeometry(.5,.35,.1),dark);st.position.y=-.9;tv.add(st);
+const ph=new THREE.Group();ph.add(new THREE.Mesh(new THREE.BoxGeometry(.8,1.6,.1),dark));const ps=new THREE.Mesh(new THREE.PlaneGeometry(.7,1.5),new THREE.MeshBasicMaterial({map:tex("#ffb454","#ff3d81")}));ps.position.z=.06;ph.add(ps);
+const hp=new THREE.Group();const band=new THREE.Mesh(new THREE.TorusGeometry(.7,.07,16,40,Math.PI),new THREE.MeshStandardMaterial({color:0x22d3ee,metalness:.6,roughness:.3}));hp.add(band);[-.7,.7].forEach(x=>{const cup=new THREE.Mesh(new THREE.CylinderGeometry(.28,.28,.22,32),new THREE.MeshStandardMaterial({color:0x7c5cff,metalness:.5,roughness:.3}));cup.rotation.z=Math.PI/2;cup.position.x=x;G.userData;hp.add(cup)});hp.position.y=0;
+const ms=[tv,ph,hp];ms.forEach((m,i)=>{const a=i/3*Math.PI*2;m.userData.a=a;G.add(m)});
+const N=400,pa=new Float32Array(N*3);for(let i=0;i<N*3;i++)pa[i]=(Math.random()-.5)*22;const pg=new THREE.BufferGeometry();pg.setAttribute("position",new THREE.BufferAttribute(pa,3));const pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x9a98ff,size:.04,transparent:true,opacity:.8}));S.add(pts);
+function size(){const w=innerWidth,h=innerHeight;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()}size();addEventListener("resize",size);
+const clk=new THREE.Clock();
+(function loop(){const t=clk.getElapsedTime(),mob=innerWidth<760;
+ sy+=(scrollY-sy)*.08;const mxS=document.documentElement.scrollHeight-innerHeight,p=mxS>0?sy/mxS:0;
+ const sc=mob?.55:1;G.scale.setScalar(sc);G.position.set(mob?0:2.1-p*3,mob?1.9-p*2:.2+Math.sin(p*9)*.3,-p*1.5);
+ G.rotation.y=p*Math.PI*6+mx*.8+t*.15;G.rotation.x=my*.4;
+ ms.forEach((m,i)=>{const a=m.userData.a;m.position.set(Math.cos(a)*2.1,Math.sin(t*1.2+i*2)*.25,Math.sin(a)*2.1);m.rotation.y=-G.rotation.y+Math.sin(t+i)*.25;m.rotation.z=Math.sin(t*.7+i)*.08});
+ pts.rotation.y=t*.02+p*2;pts.position.y=p*3;
+ cv.style.opacity=Math.max(.18,1-p*3.5);
+ R.render(S,C);requestAnimationFrame(loop)})();
+}catch(e){console.warn("3D unavailable",e)}
+/* scroll effects */
+(function sl(){const m=document.documentElement.scrollHeight-innerHeight;$("#prog").style.transform=`scaleX(${m>0?scrollY/m:0})`;
+ const s=$("#sd"),r=s.parentElement.getBoundingClientRect();s.style.transform=`translateX(${-(innerHeight-r.top)*.45}px)`;requestAnimationFrame(sl)})();
+</script>
+</body>
+</html>
